@@ -1,42 +1,275 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
+@import './styles/reset';
+
+
+@mixin beforeEle($color) {
+    &::before {
+        content: '';
+        position: absolute;
+        left: -5px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 99999px;
+        height: 80%;
+        width: 10px;
+        background-color: $color;
+    }
+
+    .anticon {
+        color: $color;
+    }
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+@mixin activeNav() {
+    &.active {
+        &::before {
+            width: 100%;
+            z-index: -1;
+            border-radius: 0 9999px 9999px 0;
+        }
+    }
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+:root {
+    --font2x: 2rem;
+    --font15: 1.5rem;
+    --font1: 1rem;
+    --font-8: .8rem;
+    --border-radius: 3rem;
+
+    --grey: hsl(200 17% 48% / 1);
+    --blue: hsl(222.86deg 92.65% 73.33%);
+    --pink: hsl(307.77deg 92.05% 70.39%);
+    --yellow: hsl(31.84deg 94.71% 62.94%);
+    --green: hsl(87.06deg 65.67% 45.69%);
+    --light-blue: hsl(233.54deg 59.63% 78.63%);
+    --purple: hsl(256.32deg 50.2% 48.82%);
+    --accent: hsl(229.13deg 88.89% 64.71%);
+    --body-bg: #0d171f;
+    --card-bg: #15202c;
+    --card-bg2: #1c2c3b;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.dark {
+    --text-color: white;
 }
 
-.card {
-  padding: 2em;
+body {
+    height: 100%;
+    color: var(--text-color);
+    background-color: var(--body-bg);
+    font-family: 'Nunito', sans-serif;
 }
 
-.read-the-docs {
-  color: #888;
+.dflex {
+    display: flex;
+}
+
+.sidenav {
+    flex: 1 0 300px;
+
+    .nav-item {
+        margin-block: 1rem;
+        color: var(--grey);
+        padding: 1rem;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        @include activeNav();
+        &:before{
+            transition: all .2s ease-in-out;
+        }
+
+        &.active {
+            color: white;
+
+            .anticon {
+                color: white;
+            }
+        }
+
+        .anticon {
+            font-size: 1.6rem;
+        }
+    }
+
+    .blue {
+        @include beforeEle($color: var(--blue));
+
+    }
+
+    .pink {
+        @include beforeEle($color: var(--pink));
+    }
+
+    .yellow {
+        @include beforeEle($color: var(--yellow));
+    }
+
+    .purple {
+        @include beforeEle($color: var(--purple));
+    }
+
+    .green {
+        @include beforeEle($color: var(--green));
+    }
+
+    .lblue {
+        @include beforeEle($color: var(--light-blue));
+    }
+
+    .ld-toggle {
+        padding: 2rem 1rem;
+        border-top: 1px solid var(--grey);
+        border-bottom: 1px solid var(--grey);
+
+        .toggle {
+            input[type=checkbox] {
+                height: 0;
+                width: 0;
+                visibility: hidden;
+            }
+
+            label {
+                cursor: pointer;
+                text-indent: -9999px;
+                width: 70px;
+                height: 35px;
+                background: var(--grey);
+                display: block;
+                border-radius: 100px;
+                position: relative;
+            }
+
+            label:after {
+                content: '';
+                position: absolute;
+                top: 5px;
+                left: 5px;
+                width: 25px;
+                height: 25px;
+                background: var(--body-bg);
+                border: 4px solid #d1cd7f;
+                border-radius: 90px;
+                transition: 0.3s;
+            }
+
+            input:checked+label {
+                background: var(--blue);
+            }
+
+            input:checked+label:after {
+                left: calc(100% - 5px);
+                transform: translateX(-100%);
+            }
+
+            label:active:after {
+                width: calc(100% / 2);
+            }
+        }
+    }
+}
+
+.welcome-text {
+    font-size: var(--font2x);
+}
+
+.w100 {
+    width: 100%;
+}
+
+.h100 {
+    height: 100%;
+}
+
+.cardbase {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+}
+
+.store {
+    padding: 1rem 2rem;
+
+    .parent {
+        height: 500px;
+        display: grid;
+        grid-template-columns: 2.5fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-column-gap: 1.5rem;
+        grid-row-gap: 1.5rem;
+
+        .popularCard {
+            img {
+                object-position: center;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .titleCard {
+            .title {
+                font-size: var(--font2x);
+                margin-bottom: 1rem;
+            }
+
+            .pills {
+                display: flex;
+                gap: .8rem;
+                flex-wrap: wrap;
+                margin-bottom: 1rem;
+
+                .pill {
+                    background-color: var(--card-bg2);
+                    border-radius: 9999px;
+                    padding: .5em 1em;
+                    font-size: var(--font-8);
+                }
+            }
+
+            .pillcard {
+                background-color: var(--card-bg2);
+                padding: .5rem;
+                border-radius: 1rem;
+            }
+
+            .rIconw {
+                background-color: var(--green);
+                padding: .5rem;
+                border-radius: 1rem;
+                margin-right: .8rem;
+            }
+
+            .rIcon {
+                font-size: 2rem;
+            }
+
+            .pricecard {
+                background-color: var(--accent);
+                padding: .5rem;
+                border-radius: 1rem;
+
+                .rIconw {
+                    background-color: transparent;
+                }
+            }
+        }
+
+        .showCaseCard {}
+    }
+
+    .div1 {
+        grid-area: 1 / 2 / 2 / 3;
+    }
+
+    .div2 {
+        grid-area: 2 / 2 / 3 / 3;
+    }
+
+    .div3 {
+        grid-area: 1 / 1 / 3 / 2;
+    }
 }
