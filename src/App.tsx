@@ -1,20 +1,31 @@
+import { QueryClient, QueryClientProvider } from 'react-query'
 import './App.scss'
 import Header from './components/Header'
 import SideNav from './components/SideNav'
-import Store from './pages/Store'
-
+import { Outlet } from 'react-router-dom'
+const queryClient = new QueryClient(
+  {
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false, // default: true
+      },
+    },
+  }
+)
 function App() {
 
   return (
-    <>
-      <div className='dflex' style={{ width: '100%' }}>
+    <QueryClientProvider client={queryClient}>
+      <div className='dflex w100'>
         <SideNav></SideNav>
         <div style={{ flex: '1 1 auto' }}>
           <Header></Header>
-          <Store></Store>
+          <div style={{ padding: '1rem 4rem' }}>
+            <Outlet></Outlet>
+          </div>
         </div>
       </div >
-    </>
+    </QueryClientProvider>
   )
 }
 

@@ -1,29 +1,30 @@
 import { BookOutlined, CustomerServiceOutlined, HomeOutlined, NotificationOutlined, ShoppingCartOutlined, ToolOutlined, WalletOutlined } from "@ant-design/icons";
 import ToggleSwitch from "./toogle";
 import logo from '../assets/images/logo.png'
+import { NavLink } from "react-router-dom";
 
 const SideNav = () => {
     return (
         <div className="sidenav">
             <div style={{ padding: '1rem' }}>
-                <img src={logo} alt="" />
+                <img style={{ height: 65 }} src={logo} alt="" />
             </div>
-            <div className="nav-item blue">
+            <NavLink to={'/'} className="nav-item blue">
                 <p>Home</p>
                 <HomeOutlined />
-            </div>
-            <div className="nav-item pink">
-                <p>News</p>
+            </NavLink>
+            <NavLink to={'Genre'} className="nav-item pink">
+                <p>Genres</p>
                 <NotificationOutlined />
-            </div>
+            </NavLink>
             <div className="nav-item yellow">
                 <p>Library</p>
                 <BookOutlined />
             </div>
-            <div className="nav-item purple active">
+            <NavLink to={'/browse'} className="nav-item purple">
                 <p>Store</p>
                 <ShoppingCartOutlined />
-            </div>
+            </NavLink>
             <div className="nav-item green">
                 <p>Wallet</p>
                 <WalletOutlined />
