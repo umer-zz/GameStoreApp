@@ -371,9 +371,11 @@ body {
     flex-direction: column;
     justify-content: space-between;
     transition: all .3s cubic-bezier(0.19, 1, 0.22, 1);
-    &:hover{
+
+    &:hover {
         transform: scale(1.03);
     }
+
     .title {
         font-size: var(--font15);
         margin: .5rem 0;
@@ -402,7 +404,7 @@ body {
         height: 185px;
 
         img {
-            aspect-ratio: 16 / 9;
+            // aspect-ratio: 16 / 10;
             object-fit: cover;
             object-position: top;
         }
@@ -490,7 +492,8 @@ body {
         padding: .5em 1.5em;
         position: relative;
         border-radius: 9999px;
-        &::after{
+
+        &::after {
             position: relative;
             content: '\00d7';
             right: -10px;
@@ -500,7 +503,7 @@ body {
 
     .bgrid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(323px, 1fr));
         gap: 1rem;
     }
 

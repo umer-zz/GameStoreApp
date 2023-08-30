@@ -1,15 +1,13 @@
 import { useQuery } from "react-query";
 import { API_KEY, AxiosInstance } from "../api/AxiosInstance";
-import { Game } from "../api/models/Game";
-import GameCard from "../components/GameCard";
 import { useEffect, useState } from "react";
 import Loader from "../components/loader/loader";
+import GameCardGrid from "../components/gameCardGrid";
 const Browse = () => {
     let [selected, setSelected] = useState<any[]>([])
     const { isLoading, isError, data, isFetching } = useQuery(['games', selected.length], () => AxiosInstance.get(`/games?key=${API_KEY}${selected.length ? '&genres=' + selected.map(ele => ele.id).join() : ''}`))
     const { data: genre } = useQuery('genres', () => AxiosInstance.get(`/genres?key=${API_KEY}`))
     function removeItem(id: number) {
-        console.log(id)
         setSelected(prev => prev.filter(ele => ele.id != id))
     }
     return (
@@ -20,9 +18,7 @@ const Browse = () => {
                 </div>
                 {isLoading || isFetching ? <Loader></Loader>
                     :
-                    <div className="bgrid">
-                        {data?.data && data.data.results.map((ele: Game) => <GameCard key={ele.id} data={ele}></GameCard>)}
-                    </div>
+                    <GameCardGrid data={data?.data} gridClass="bgrid"></GameCardGrid>
                 }
 
             </div>
