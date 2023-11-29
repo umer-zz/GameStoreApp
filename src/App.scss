@@ -411,7 +411,7 @@ body {
         height: 185px;
 
         img {
-            aspect-ratio: 16 / 9;
+            // aspect-ratio: 16 / 10;
             object-fit: cover;
             object-position: top;
         }
@@ -510,7 +510,7 @@ body {
 
     .bgrid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(323px, 1fr));
         gap: 1rem;
     }
 
