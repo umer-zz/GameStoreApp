@@ -1,13 +1,14 @@
-import { useQuery } from "react-query";
+
 import { API_KEY, AxiosInstance } from "../api/AxiosInstance";
 import { Game } from "../api/models/Game";
 import GameCard from "../components/GameCard";
 import { useEffect, useState } from "react";
 import Loader from "../components/loader/loader";
+import { useQuery } from "@tanstack/react-query";
 const Browse = () => {
     let [selected, setSelected] = useState<any[]>([])
-    const { isLoading, isError, data, isFetching } = useQuery(['games', selected.length], () => AxiosInstance.get(`/games?key=${API_KEY}${selected.length ? '&genres=' + selected.map(ele => ele.id).join() : ''}`))
-    const { data: genre } = useQuery('genres', () => AxiosInstance.get(`/genres?key=${API_KEY}`))
+    const { isLoading, isError, data, isFetching } = useQuery({ queryKey: ['games', selected.length], queryFn: () => AxiosInstance.get(`/games?key=${API_KEY}${selected.length ? '&genres=' + selected.map(ele => ele.id).join() : ''}`) })
+    const { data: genre } = useQuery({ queryKey: ['genres'], queryFn: () => AxiosInstance.get(`/genres?key=${API_KEY}`) })
     function removeItem(id: number) {
         console.log(id)
         setSelected(prev => prev.filter(ele => ele.id != id))
@@ -27,7 +28,7 @@ const Browse = () => {
 
             </div>
             <div className="filterWrap">
-                <p className="title">Genre</p>
+                <p className="title">Filter</p>
                 <div className="filterCardWrap">
                     {genre?.data && genre.data.results.map((ele: any) => <div onClick={() => {
                         if (selected.length) {

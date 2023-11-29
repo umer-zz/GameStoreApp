@@ -1,12 +1,12 @@
 import GameCard from "../components/GameCard";
 import BuyButton from "../components/buyButtons";
-import { useQuery } from "react-query";
 import { API_KEY, AxiosInstance } from "../api/AxiosInstance";
 import { Game } from '../api/models/Game';
 import { useMemo } from 'react';
 import Loader from "../components/loader/loader";
+import { useQuery } from "@tanstack/react-query";
 const Store = () => {
-    const { isLoading, isError, data } = useQuery('games', () => AxiosInstance.get(`/games?key=${API_KEY}`))
+    const { isLoading, isError, data } = useQuery({ queryKey: ['games'], queryFn: () => AxiosInstance.get(`/games?key=${API_KEY}`) })
     let sortedGames: Game[] = useMemo(() => {
         if (data?.data) {
             let temp = data.data.results.slice()

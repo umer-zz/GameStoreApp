@@ -9,6 +9,7 @@ import {
 import Store from './pages/Store.tsx';
 import Genre from './pages/Genres.tsx';
 import Browse from './pages/Browse.tsx';
+import GamePage from './pages/GamePage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -19,15 +20,19 @@ const router = createBrowserRouter([
         element: <Store />,
         index: true
       },
-      
+
       {
         element: <Genre />,
-        path:'Genre'
+        path: 'Genre'
       },
-      
+
       {
         element: <Browse />,
-        path:'browse'
+        path: 'browse',
+      },
+      {
+        element: <GamePage />,
+        path: 'game/:gameId'
       },
     ],
   },

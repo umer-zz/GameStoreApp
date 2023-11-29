@@ -64,6 +64,7 @@
     --body-bg: #0d171f;
     --card-bg: #15202c;
     --card-bg2: #1c2c3b;
+    --accent-dark: #3d5ffb;
 }
 
 html {
@@ -352,6 +353,10 @@ body {
     .rIconw {
         background-color: transparent;
     }
+
+    &:hover {
+        background-color: var(--accent-dark);
+    }
 }
 
 .popularGrid {
@@ -370,10 +375,14 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: all .3s cubic-bezier(0.19, 1, 0.22, 1);
-    &:hover{
-        transform: scale(1.03);
+    transition: background-color .1s ease-in;
+    cursor: pointer;
+
+    &:hover {
+        // transform: scale(1.03);
+        background-color: #334458;
     }
+
     .title {
         font-size: var(--font15);
         margin: .5rem 0;
@@ -490,7 +499,8 @@ body {
         padding: .5em 1.5em;
         position: relative;
         border-radius: 9999px;
-        &::after{
+
+        &::after {
             position: relative;
             content: '\00d7';
             right: -10px;
@@ -590,5 +600,11 @@ body {
             }
         }
 
+    }
+}
+
+.GamePage {
+    .banner {
+        height: 800px;
     }
 }

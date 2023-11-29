@@ -1,9 +1,9 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { API_KEY, AxiosInstance } from "../api/AxiosInstance";
 import Loader from "../components/loader/loader";
 
 const Genre = () => {
-    const { data, isLoading } = useQuery('genres', () => AxiosInstance.get(`/genres?key=${API_KEY}`))
+    const { data, isLoading } = useQuery({ queryKey: ['genres'], queryFn: () => AxiosInstance.get(`/genres?key=${API_KEY}`) })
     return (
         <div className="genreWrapper">
             {isLoading && <Loader></Loader>}
