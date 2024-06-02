@@ -604,7 +604,11 @@ body {
 }
 
 .GamePage {
+    background-position: top;
+    background-size: cover;
+    height: 100vh;
+
     .banner {
-        height: 800px;
+        height: 500px;
     }
 }

@@ -8,9 +8,8 @@ const GamePage = () => {
     let { data } = useQuery<Game>({ queryKey: ['game', params.gameId], queryFn: () => AxiosInstance.get(`/games/${params.gameId}?key=${API_KEY}`).then((res) => res.data) })
     // console.log(data?.background_image, isError, error)
     return (
-        <div className="GamePage">
+        <div className="GamePage" style={{ backgroundImage: `url(${data?.background_image})` }}>
             <div className="banner">
-                <img src={data?.background_image} alt="" srcSet="" />
             </div>
         </div>
     );
