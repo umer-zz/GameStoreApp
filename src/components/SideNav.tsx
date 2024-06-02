@@ -7,7 +7,7 @@ const SideNav = () => {
     return (
         <div className="sidenav">
             <div style={{ padding: '1rem' }}>
-                <img style={{ height: 65 }} src={logo} alt="" />
+                <img style={{ height: 'auto' }} src={logo} alt="" />
             </div>
             <NavLink to={'/'} className="nav-item blue">
                 <p>Home</p>
